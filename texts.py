@@ -1,0 +1,37 @@
+import re
+
+import re
+
+def escape_md(text):
+    escape_chars = r'_*\[\]()~`>#+-=|{}.!'
+    return re.sub(f'([{re.escape(escape_chars)}])', r'\\\1', text)
+
+
+def text_one_dataset(update_df):
+    text = (
+        f"📢 {escape_md(update_df['org'].iloc[0])} publicó un nuevo dataset:\n\n"
+        f"📊 {escape_md(update_df['title'].iloc[0])}\n"
+        f"🔗 Podés consultarlo **[acá]({update_df['link'].iloc[0]})**\n"
+    )
+    return text
+
+def text_sev_dataset(update_df):
+    text = f"📈 Hay {len(update_df)} datasets nuevos en el Portal Nacional de Datos Abiertos:\n\n"
+    for _, row in update_df.iterrows():
+        text += f"🔹 **[{escape_md(row['title'])}]({row['link']})**\n"
+    return text
+
+def text_one_org(org_inter, org_url):
+    text = (
+        f"🎉 {escape_md('¡Excelentes noticias! Tenemos nuevo nodo:')}\n\n"
+        f"🏢 **[{escape_md(org_inter[0])}]({org_url})**\n\n"
+    )
+    return text
+
+def text_sev_orgs(org_inter, org_updates, ckan_portal):
+    text = f"🎉 {escape_md(f'¡Hay {len(org_inter)} nodos nuevos en el Portal Nacional de Datos Abiertos!')}\n\n"
+    for org in org_inter:
+        alias = next((k for k, v in org_updates.items() if v == org), None)
+        org_url = f"{ckan_portal}dataset?organization={alias}"
+        text += f"🔹 **[{escape_md(org)}]({org_url})**\n"
+    return text
