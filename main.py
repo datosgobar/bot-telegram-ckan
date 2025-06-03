@@ -40,7 +40,7 @@ def main(link_ckan, file_path):
         data_dict = sc.get_current_datasets(link_ckan)
         org_dict = sc.get_current_orgs(link_ckan)
         updates = sc.scan_updates(data_dict, org_dict, file_path, link_ckan)
-        logger.info("Se terminaron de scanear de datos")
+        logger.info("Se terminaron de escanear los datos")
         # Si no hay datos nuevos termina el proceso, no compara organizaciones.
         if not isinstance(updates, pd.DataFrame):
             sc.save_ckan_state(data_dict, org_dict, file_path)
