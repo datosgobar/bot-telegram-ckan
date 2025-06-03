@@ -70,6 +70,8 @@ def main(link_ckan, file_path):
 if __name__ == "__main__":
     try:
         main(ckan_url, pers_path)
+        logger.info(f"SENDER: {sender}")
+        logger.info(f"RECEIVERS: {receivers}")
         send_email_report(
             sender_email=sender,
             sender_password= sender_pass,
