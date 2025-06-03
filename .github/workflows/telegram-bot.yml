@@ -45,6 +45,7 @@ jobs:
           git add last_data.json
           git diff --cached --quiet || (
             git commit -m "Update last_data.json [bot]"
-            git push
+            git pull --rebase origin main
+            git push origin main
           )
 
