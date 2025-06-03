@@ -40,9 +40,11 @@ def main(link_ckan, file_path):
         data_dict = sc.get_current_datasets(link_ckan)
         org_dict = sc.get_current_orgs(link_ckan)
         updates = sc.scan_updates(data_dict, org_dict, file_path, link_ckan)
+        logger.info("Se terminaron de scanear de datos")
         # Si no hay datos nuevos termina el proceso, no compara organizaciones.
         if not isinstance(updates, pd.DataFrame):
             sc.save_ckan_state(data_dict, org_dict, file_path)
+            logger.info("No hay novedades, terminando proceso")
             return "No hay nuevos datos en el portal"
         else:
             org_updates = sc.scan_organizations(link_ckan, file_path)
@@ -52,11 +54,14 @@ def main(link_ckan, file_path):
                 org_in_data = updates['org'].tolist()
                 org_inter = list(set(org_updates_list) & set(org_in_data))
                 if org_inter:
+                    logger.info("Hay nodos nuevos con data")
                     text = new_org_message(org_updates, org_inter, link_ckan)
                     sc.save_ckan_state(data_dict, org_dict, file_path)
+                    logger.info("Mandando mensaje por nuevos nodos")
                     return asyncio.run(send_update(text))
             text = new_data_message(updates)
             sc.save_ckan_state(data_dict, org_dict, file_path)
+            logger.info("Mandando mensaje por nuevos datasets")
             return asyncio.run(send_update(text))
     except Exception as e:
         logger.error(f"No se pudo comprobar actualizaciones:{e}")
