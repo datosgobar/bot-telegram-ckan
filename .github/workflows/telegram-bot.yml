@@ -40,11 +40,11 @@ jobs:
         run: |
           python main.py
 
-      - name: Commit and push last_data.json if changed
+      - name: Commit and push last_data_juguete.json if changed
         run: |
           git add last_data.json
           git diff --cached --quiet || (
-            git commit -m "Update last_data.json [bot]"
+            git commit -m "Update last_data_juguete.json [bot]"
             git pull --rebase origin main
             git push origin main
           )
