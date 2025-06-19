@@ -42,7 +42,7 @@ jobs:
 
       - name: Commit and push last_data_juguete.json if changed
         run: |
-          git add last_data.json
+          git add last_data_juguete.json
           git diff --cached --quiet || (
             git commit -m "Update last_data_juguete.json [bot]"
             git pull --rebase origin main
