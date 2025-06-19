@@ -2,7 +2,7 @@ name: Run Telegram Bot
 
 on:
   schedule:
-    - cron: '0 9 * * *'  # Todos los días 
+    - cron: '0 13 * * *'  # Todos los días 
   workflow_dispatch:
 
 jobs:
