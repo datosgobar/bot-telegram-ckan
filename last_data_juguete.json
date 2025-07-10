@@ -1,6 +1,6 @@
 {
     "date": "10/07/2025",
-    "total_datasets": 1231,
+    "total_datasets": 1232,
     "dataset_ids": [
         "agroindustria_e2f12522-4dea-495e-877a-b6d2737ae6bf",
         "energia_1c181390-5045-475e-94dc-410429be4b17",
@@ -9,6 +9,7 @@
         "energia_4adf2cf0-621c-49e6-8434-9d787765d9ea",
         "energia_8758101a-1e0d-413f-8cc5-83e21ece6391",
         "energia_2e0fe150-8cf4-4707-927d-94bfaf95bb53",
+        "produccion_e9ffbef0-c8a3-4d7d-9c50-ae55a2a8f98e",
         "produccion_6f47ec76-d1ce-4e34-a7e1-621fe9b1d0b5",
         "agroindustria_5f97a0b9-f677-4657-9e07-0cd3b98da754",
         "mineria_1",
