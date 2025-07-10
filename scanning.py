@@ -83,14 +83,15 @@ def scan_updates(new_data, org_dict, file_path, ckan_url):
     base_url = ckan_url+"dataset/"
     if len(new_dataset_list) > len(last_dataset_list):
         diffs = list(set(new_dataset_list)-set(last_dataset_list))
-        diffs_df = pd.DataFrame(columns=["id", "title", "org", "link", "contact"])
+        diffs_df = pd.DataFrame(columns=["id", "title","author", "org", "link", "contact"])
         for diff in diffs:
             id = new_data[diff]['id']
             title = new_data[diff]['title']
+            author = new_data[diff]['author']
             org = new_data[diff]['organization']['title']
             link = base_url+id
             contact = new_data[diff]['author_email']
-            row = [id,title,org,link,contact]
+            row = [id,title,author,org,link,contact]
             diffs_df.loc[len(diffs_df)]=row
         response = diffs_df
     else:

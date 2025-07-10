@@ -9,7 +9,7 @@ def escape_md(text):
 
 def text_one_dataset(update_df):
     text = (
-        f"📢 {escape_md(update_df['org'].iloc[0])} publicó un nuevo dataset:\n\n"
+        f"📢 {escape_md(update_df['author'].iloc[0])} publicó un nuevo dataset:\n\n"
         f"📊 {escape_md(update_df['title'].iloc[0])}\n"
         f"🔗 Podés consultarlo **[acá]({update_df['link'].iloc[0]})**\n"
     )
