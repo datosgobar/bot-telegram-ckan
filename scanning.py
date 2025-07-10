@@ -88,7 +88,7 @@ def scan_updates(new_data, org_dict, file_path, ckan_url):
             id = new_data[diff]['id']
             title = new_data[diff]['title']
             maintainer = new_data[diff]['maintainer']
-            org = new_data[diff]['organization']['title']
+            org = new_data[diff]['organization']['name']
             link = base_url+id
             contact = new_data[diff]['author_email']
             row = [id,title,maintainer,org,link,contact]

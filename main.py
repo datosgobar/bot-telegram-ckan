@@ -47,10 +47,10 @@ def main(link_ckan, file_path):
             logger.info("No hay novedades, terminando proceso")
             return "No hay nuevos datos en el portal"
         else:
-            org_updates = sc.scan_organizations(link_ckan, file_path)
+            org_updates = sc.scan_organizations(org_dict, file_path)
             if isinstance(org_updates, dict):
                 #Se asegura que los nodos nuevos tengan alguna data publicada
-                org_updates_list = [v for k, v in org_updates.items()]
+                org_updates_list = [k for k, v in org_updates.items()]
                 org_in_data = updates['org'].tolist()
                 org_inter = list(set(org_updates_list) & set(org_in_data))
                 if org_inter:
@@ -59,7 +59,7 @@ def main(link_ckan, file_path):
                     sc.save_ckan_state(data_dict, org_dict, file_path)
                     logger.info("Mandando mensaje por nuevos nodos")
                     return asyncio.run(send_update(text))
-            text = new_data_message(updates)
+            text = new_data_message(updates,org_dict)
             sc.save_ckan_state(data_dict, org_dict, file_path)
             logger.info("Mandando mensaje por nuevos datasets")
             return asyncio.run(send_update(text))
