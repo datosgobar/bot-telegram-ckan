@@ -87,11 +87,11 @@ def scan_updates(new_data, org_dict, file_path, ckan_url):
         for diff in diffs:
             id = new_data[diff]['id']
             title = new_data[diff]['title']
-            author = new_data[diff]['author']
+            maintainer = new_data[diff]['maintainer']
             org = new_data[diff]['organization']['title']
             link = base_url+id
             contact = new_data[diff]['author_email']
-            row = [id,title,author,org,link,contact]
+            row = [id,title,maintainer,org,link,contact]
             diffs_df.loc[len(diffs_df)]=row
         response = diffs_df
     else:
