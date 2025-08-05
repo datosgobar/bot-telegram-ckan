@@ -36,11 +36,11 @@ def text_sev_dataset(update_df,org_dict):
                 verbose_org = org_dict[maintainer_df['org'].iloc[0]]
                 if maintainer.strip() == verbose_org.strip():
                     text = f"📈 {escape_md(verbose_org)} publicó {len(maintainer_df)} datasets nuevos en el Portal Nacional de Datos Abiertos:\n\n"
-                    for _, row in update_df.iterrows():
+                    for _, row in maintainer_df.iterrows():
                         text += f"🔹 **[{escape_md(row['title'])}]({row['link']})**\n"
                 else:
                     text = f"📈 {escape_md(maintainer + ' - ' + verbose_org)} publicó {len(maintainer_df)} datasets nuevos en el Portal Nacional de Datos Abiertos:\n\n"
-                    for _, row in update_df.iterrows():
+                    for _, row in maintainer_df.iterrows():
                         text += f"🔹 **[{escape_md(row['title'])}]({row['link']})**\n"
                 texts.append(text)
     else:
