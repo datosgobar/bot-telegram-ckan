@@ -4,7 +4,7 @@ from texts import text_one_dataset, text_sev_dataset, text_one_org, text_sev_org
 
 def read_json(file_path):
     """Carga un json en un diccionario"""
-    with open(file_path,"r", encoding="utf-8") as f:
+    with open(file_path,"r", encoding="latin-1") as f:
         data = json.load(f)
     return data
 
@@ -20,7 +20,7 @@ def new_data_message(update_df,org_dict):
     if len(update_df) == 1:
         text = text_one_dataset(update_df, org_dict)
     else:
-        text = text_sev_dataset(update_df)
+        text = text_sev_dataset(update_df,org_dict)
     return text
 
 

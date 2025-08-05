@@ -62,7 +62,11 @@ def main(link_ckan, file_path):
             text = new_data_message(updates,org_dict)
             sc.save_ckan_state(data_dict, org_dict, file_path)
             logger.info("Mandando mensaje por nuevos datasets")
-            return asyncio.run(send_update(text))
+            if isinstance(text,list):
+                for element in text:
+                    asyncio.run(send_update(element))
+            else:
+               return asyncio.run(send_update(text))
     except Exception as e:
         logger.error(f"No se pudo comprobar actualizaciones:{e}")
 
